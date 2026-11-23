@@ -1,0 +1,23 @@
+{
+ "case_id": "demo-product-arena-01-5a9928c1",
+ "topic_id": "product-arena-01-5a9928c1",
+ "topic_title": "阅读03｜文献翻译",
+ "difficulty": 2,
+ "domain": "reading",
+ "task_instruction": "演示用例：请把同目录下的合成英文论文翻译为中文双语对照结果，锁定术语表，保留段号、数字、单位、公式编号、图表编号与文献引用，并给出译法依据；原文未报告或需要人工确认的部分写入 uncertainties。",
+ "output_contract": {
+  "case_id": "原样保留",
+  "case_identifiers": "输入标识 :: `case_id`、`paper_id`、`material_version` 与本次输入一致。 | 子字段: case_id, material_version, paper_id",
+  "translation_result": "题目主结果 :: 全文或指定段落区间的中文译文，按语义完整交付，不省略、不改写原意。",
+  "translated_segments": "双语段落对照 :: 每项含 segment_id（原文段号）、source（原文逐字）、translation（译文）、status、protected_tokens、glossary_terms、basis。",
+  "glossary": "术语表 :: 每项含 term（原文）、translation（锁定译名）、occurrences（出现段号）、basis（依据）；全篇同一术语使用同一译名。",
+  "findings": "译文核验 :: 逐条记录术语一致性、数字/单位/公式/引用保留、否定与限定关系，以及需要人工确认的项。",
+  "evidence": "证据与来源定位 :: 每段译文指回原文 paragraph_id 与逐字短引。",
+  "coverage": "翻译覆盖 :: 已译段落、未译部分及原因。",
+  "status": "answered|partial|insufficient_evidence|unsupported",
+  "uncertainties": "未报告、无法判断、术语待确认和人工复核项"
+ },
+ "evaluation": {
+  "mode": "demo"
+ }
+}
