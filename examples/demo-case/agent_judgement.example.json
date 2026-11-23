@@ -1,0 +1,110 @@
+{
+  "_comment": [
+    "阶段 B 的判断文件模板。复制到 /app/work/agent_judgement.json 后按实际材料填写。",
+    "quote 必须是材料里的逐字片段 —— 脚本会逐条校验，找不到就退回。",
+    "case_id 必须与 /input/case.json 里的 case_id 一致。",
+    "本题示例为合成材料，不是正式案例结果。"
+  ],
+  "case_id": "demo-product-arena-01-5a9928c1",
+  "claims": [
+    {
+      "text": "The term 'porous carbon electrode' is translated uniformly as '多孔碳电极' in every segment.",
+      "kind": "reported",
+      "evidence": [
+        {"paragraph_id": "P002", "quote": "Porous carbon electrodes are attractive for supercapacitors because of their high specific surface area."}
+      ]
+    },
+    {
+      "text": "Numbers, units and the citation marker are preserved exactly: 210 F/g, 1 A/g, 5000 cycles, 92 %, 1 M H2SO4 and [1].",
+      "kind": "reported",
+      "evidence": [
+        {"paragraph_id": "P005", "quote": "reached a specific capacitance of 210 F/g at 1 A/g"},
+        {"paragraph_id": "P006", "quote": "retained 92 % of its initial value (Figure 1)"},
+        {"paragraph_id": "P007", "quote": "the specific capacitance at 5 A/g was not reported [1]"}
+      ]
+    },
+    {
+      "text": "The source does not report the specific capacitance at 5 A/g; the translation keeps this limitation.",
+      "kind": "reported",
+      "evidence": [
+        {"paragraph_id": "P007", "quote": "the specific capacitance at 5 A/g was not reported [1]"}
+      ]
+    }
+  ],
+  "answers": [
+    {
+      "question": "Is the negation and the missing 5 A/g value preserved?",
+      "answer": "Yes. The translation states that the specific capacitance at 5 A/g was not reported and keeps citation [1].",
+      "evidence": [
+        {"paragraph_id": "P007", "quote": "the specific capacitance at 5 A/g was not reported [1]"}
+      ]
+    }
+  ],
+  "deliverable": "中文译文：多孔碳电极因其高比表面积而在超级电容器中具有吸引力。我们以间苯二酚和甲醛为原料制备了一种多孔碳电极，并在 1 M H2SO4 中测量了其比电容。该多孔碳电极在 1 A/g 下达到 210 F/g 的比电容。经过 5000 次循环后，比电容保持初始值的 92 %（图 1）。这些结果表明该多孔碳电极在循环条件下是稳定的，但 5 A/g 下的比电容未报告 [1]。",
+  "contract_fields": {
+    "translated_segments": [
+      {"segment_id": "P002",
+       "source": "Porous carbon electrodes are attractive for supercapacitors because of their high specific surface area.",
+       "translation": "多孔碳电极因其高比表面积而在超级电容器中具有吸引力。",
+       "status": "translated", "protected_tokens": ["porous carbon electrodes", "supercapacitors"],
+       "glossary_terms": ["多孔碳电极", "超级电容器", "比表面积"],
+       "basis": "Terminology follows the locked glossary; causal 'because of' kept as 因."},
+      {"segment_id": "P003",
+       "source": "We prepared a porous carbon electrode from resorcinol and formaldehyde and measured its specific capacitance in 1 M H2SO4.",
+       "translation": "我们以间苯二酚和甲醛为原料制备了一种多孔碳电极，并在 1 M H2SO4 中测量了其比电容。",
+       "status": "translated", "protected_tokens": ["1 M H2SO4"],
+       "glossary_terms": ["多孔碳电极", "比电容"],
+       "basis": "Reagent names use standard chemistry translations; the electrolyte formula is kept verbatim."},
+      {"segment_id": "P005",
+       "source": "The porous carbon electrode reached a specific capacitance of 210 F/g at 1 A/g.",
+       "translation": "该多孔碳电极在 1 A/g 下达到 210 F/g 的比电容。",
+       "status": "translated", "protected_tokens": ["210 F/g", "1 A/g"],
+       "glossary_terms": ["多孔碳电极", "比电容"],
+       "basis": "Numbers and units are kept unchanged; word order adjusted to Chinese."},
+      {"segment_id": "P006",
+       "source": "After 5000 cycles, the specific capacitance retained 92 % of its initial value (Figure 1).",
+       "translation": "经过 5000 次循环后，比电容保持初始值的 92 %（图 1）。",
+       "status": "translated", "protected_tokens": ["5000", "92 %", "Figure 1"],
+       "glossary_terms": ["比电容"],
+       "basis": "Figure number localized only in wording, number preserved as 图 1."},
+      {"segment_id": "P007",
+       "source": "These results suggest that the porous carbon electrode is stable under cycling, although the specific capacitance at 5 A/g was not reported [1].",
+       "translation": "这些结果表明该多孔碳电极在循环条件下是稳定的，但 5 A/g 下的比电容未报告 [1]。",
+       "status": "translated", "protected_tokens": ["5 A/g", "[1]"],
+       "glossary_terms": ["多孔碳电极", "比电容"],
+       "basis": "The concession 'although' is kept as 但; the negative limitation is explicit."}
+    ],
+    "glossary": [
+      {"term": "porous carbon electrode", "translation": "多孔碳电极", "occurrences": ["P002", "P003", "P005", "P007"],
+       "basis": "Standard materials-science term; singular/plural unified."},
+      {"term": "specific capacitance", "translation": "比电容", "occurrences": ["P003", "P005", "P006", "P007"],
+       "basis": "Standard electrochemistry term."},
+      {"term": "supercapacitor", "translation": "超级电容器", "occurrences": ["P002"],
+       "basis": "Standard term; plural rendered as generic class in Chinese."},
+      {"term": "specific surface area", "translation": "比表面积", "occurrences": ["P002"],
+       "basis": "Standard materials-science term."}
+    ],
+    "findings": [
+      {"finding_id": "F1", "check": "terminology_consistency", "result": "pass",
+       "detail": "'porous carbon electrode' is rendered as 多孔碳电极 in all four occurrences."},
+      {"finding_id": "F2", "check": "protected_tokens", "result": "pass",
+       "detail": "210 F/g, 1 A/g, 5000, 92 %, 1 M H2SO4 and [1] are preserved."},
+      {"finding_id": "F3", "check": "negation_and_limitation", "result": "pass",
+       "detail": "'was not reported [1]' is translated as 未报告 [1], keeping the limitation."}
+    ]
+  },
+  "uncertainties": [
+    {
+      "kind": "term_needs_human_review",
+      "item": "resorcinol and formaldehyde",
+      "detail": "The synthetic material gives no Chinese term authority for the reagent names.",
+      "resolution": "Used standard chemistry translations 间苯二酚 and 甲醛 and marked them for human confirmation."
+    },
+    {
+      "kind": "reference_not_resolvable",
+      "item": "[1]",
+      "detail": "The demo material does not include a reference list entry for [1].",
+      "resolution": "Preserved the citation marker exactly and did not invent bibliographic data."
+    }
+  ]
+}
